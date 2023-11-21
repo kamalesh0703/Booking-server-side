@@ -72,9 +72,9 @@ router.delete('/deleteHotel', async (req, res) => {
   catch (err) {
     res.status(500).json(err)
   }
-})
+})  
 
-// Get 
+// Get  
 
 router.get('/getHotel/:id', async (req, res) => {
   try {

@@ -4,45 +4,45 @@ const Schema=mongoose.Schema;
 const HostelSchema=new Schema({
     name:{
         type:String,
-        // required:true
+        required:true
     },
     type:{
         type:String,
-        // required:true
+        required:true
     },
     city:{
         type:String,
-        // required:true
+        required:true
     },
     address:{
         type:String,
-        // required:true
+        required:true
     },
     distance:{
         type:String,
-        // required:true
+        required:true
     },
     photos:[{filename:{type:String},filepath:{type:String}}],
     decs:{
         type:String,
-        // required:true
+        required:true
     },
     rating:{
         type:Number, 
         min:0,
         max:10,
-        // required:true
+        required:true
     },
     rooms:{
         type:[String],
     },
     features:{
         type:String, 
-        // required:true
+        required:true
     },
     price:{ 
         type:Number,
-        // required:true
+        required:true
     }
 },{timestamps:true})
 module.exports=mongoose.model('Hotel',HostelSchema);
