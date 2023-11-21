@@ -14,7 +14,7 @@ const RoomSchema=new Schema({
         type:Number,
         required:true
     },
-    decs:{
+    decs:{ 
         type:String,
         required:true
     },

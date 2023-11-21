@@ -1,3 +1,3 @@
 module.exports={
-    db:"mongodb://127.0.0.1:27017/booking-app"
-}
+    db:"mongodb+srv://kamalesh:7Rxiriod64@cluster0.u2ctloz.mongodb.net/"
+} 

@@ -25,15 +25,11 @@ router.post('/upload', upload.array('images', 6), async (req, res) => {
   }
 
   const uploadedImages = [];
-  // Save each image to MongoDB
+
   for (const file of fileArray) {
-    // await newImage.save();
-    console.log(file.path)
     uploadedImages.push({ filename: file.originalname, filepath: `http://localhost:5500/uploads/${file.originalname}` });
   }
-
-  setTimeout(() => {
-    const hotel = new HotelModel({
+    const hotel =new  HotelModel({
       name: req.body.name,
       type: req.body.type,
       city: req.body.city,
@@ -45,10 +41,9 @@ router.post('/upload', upload.array('images', 6), async (req, res) => {
       features: req.body.features,
       price: req.body.price
     })
-    const savehotel = hotel.save()
-
-    res.json("add Sucess");
-  }, 2000)
+    
+  const  saveHotel=await hotel.save()
+  res.json({status:"200",Msg:"Hotel Detail Upload Sucessfully Then you will room details",saveHotel});
 });
 
 
@@ -66,9 +61,9 @@ router.put('/updateHotel/:id', async (req, res) => {
 
 // Delete
 
-router.delete('/deleteHotel/:id', async (req, res) => {
+router.delete('/deleteHotel', async (req, res) => {
   try {
-    await HotelModel.findByIdAndDelete(req.params.id);
+    await HotelModel.deleteOne(req.query);
     res.status(200).json({
       "status": "sucess",
       "Message": "the Hotal has been Deleted Sucessfully"
@@ -93,9 +88,10 @@ router.get('/getHotel/:id', async (req, res) => {
 
 // GetAll
 router.get('/getHotels', async (req, res) => {
+  console.log("jhed")
   const { min, max, ...others } = req.query;
   try {
-    const hotels = await new HotelModel.find({
+    const hotels = await HotelModel.find({
       ...others,
       price: { $gt: min | 0, $lt: max || 999 }
     });

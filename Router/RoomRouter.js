@@ -16,7 +16,7 @@ router.post('/addRoom/:hotelId', async (req,res)=>{
       catch(err){
         res.json(err)
       }
-      res.json(saveRoom)
+      res.json({status:"sucess",saveRoom})
     }
     catch(err){
         res.status(500).json(err)

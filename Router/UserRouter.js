@@ -9,7 +9,6 @@ const UserModel = require('../Model/UserModel');
 router.post('/register', async (req, res) => {
     try {
         const { username, email,password } = req.body;
-        console.log(username,email,password)
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(req.body.password, salt, (err, hashedpassword) => {
                 const password = hashedpassword;
@@ -31,7 +30,7 @@ router.post('/login', async (req, res) => {
         if (user) {
             const passwordvalidate = await bcrypt.compare(req.body.password, user.password)
             if (passwordvalidate) {
-                res.json({Msg:"sucess",user})
+                res.json({Msg:"Login Sucessfully",user})
             }
             else{
                 res.json({"Status": "401", "Msg":"Password  Incorrect" }) 
@@ -49,7 +48,6 @@ router.post('/admin', async (req, res) => {
     try {
         const user = await UserModel.findOne({ email: req.body.email });
         if (user) {
-            // Successful login
             if(user.isAdmin){
                 const passwordvalidate = await bcrypt.compare(req.body.password, user.password)
                if(passwordvalidate){
@@ -63,10 +61,9 @@ router.post('/admin', async (req, res) => {
                 return res.json({ message: 'you not admin',status:"402", user });
             }
         } else { 
-            // Failed login
-            return res.status(401).json({ message: 'Invalid username or password' });
+            return res.status(401).json({ message: 'You are not Admin' });
         }
-    }
+    }  
     catch (error) {
         res.json(error)
     }

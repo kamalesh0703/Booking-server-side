@@ -37,7 +37,8 @@ const HostelSchema=new Schema({
         type:[String],
     },
     features:{
-        type:String,
+        type:String, 
+        // required:true
     },
     price:{ 
         type:Number,
