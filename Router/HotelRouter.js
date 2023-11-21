@@ -65,14 +65,14 @@ router.delete('/deleteHotel', async (req, res) => {
   try {
     await HotelModel.deleteOne(req.query);
     res.status(200).json({
-      "status": "sucess",
-      "Message": "the Hotal has been Deleted Sucessfully"
+      status: "sucess",
+      Message: "the Hotal has been Deleted Sucessfully"
     })
   }
   catch (err) {
     res.status(500).json(err)
   }
-})  
+})   
 
 // Get  
 
