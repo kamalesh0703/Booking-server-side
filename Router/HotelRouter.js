@@ -101,7 +101,7 @@ router.get('/getHotels', async (req, res) => {
   }
 })
 router.get('/getAllhotels', async (req, res) => {
-  HotelModel.find()
+  HotelModel.find(req.query)
  
   .then(data => res.json(data))
   .catch(error => res.json(error))
