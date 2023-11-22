@@ -88,14 +88,12 @@ router.get('/getHotel/:id', async (req, res) => {
 
 // GetAll
 router.get('/getHotels', async (req, res) => {
-  console.log("jhed")
   const { min, max, ...others } = req.query;
   try {
     const hotels = await HotelModel.find({
       ...others,
       price: { $gt: min | 0, $lt: max || 999 }
     });
-    console.log(hotels)
     res.json(hotels)
   }
   catch (err) {
